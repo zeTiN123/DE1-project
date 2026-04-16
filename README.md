@@ -6,7 +6,7 @@ Alarm_Clock - Projekt z předmětu DE1, tým Bagačka, Focher a Langová
 Cv. 1.:
 
 Obr. 1: Prvotní verze blokového schéma pro Alarm Clock
-<img width="1227" height="656" alt="obrazek" src="https://github.com/user-attachments/assets/7d4be329-be60-4113-8527-3fd26c0ea448" />
+<img width="1227" height="656" alt="obrazek" src="https://github.com/user-attachments/assets/92999e23-0832-4dd0-afc5-6c04e7930755" />
 
 Princip či premise:
 - Principální rozděleni Nexys A7 50T segmentovek na 2 části: 1. část, tedy an[3->0], zobrazuje Clock a 2. část (an[7->4]) zobrazuje Alarm. 
@@ -47,10 +47,10 @@ Counter_Clock
 - pro dosavadní testování je zvýšen sekundový čas, sig_en <= '1'; wait for 900 us;
   
 Obr. 2: Zobrazená simulace pro tb_counter_clock, zobrazující uplynulé sekundy, minuty a hodiny
-<img width="1649" height="812" alt="obrazek" src="https://github.com/user-attachments/assets/b78620fc-365f-4623-aba8-46201d8834dd" />
+<img width="1649" height="812" alt="obrazek" src="https://github.com/user-attachments/assets/593b9d27-8c5c-4b3e-b080-1510a1dcb5cb" />
 
 Obr. 3: Zobrazená simulace pro tb_debounce_BTNC, zobrazující stisknutí tlačítka (začatek, konec, výchozí signál)
-<img width="1192" height="813" alt="obrazek" src="https://github.com/user-attachments/assets/bc528d11-74ba-46f3-b859-dcdbf86bde76" />
+<img width="1192" height="813" alt="obrazek" src="https://github.com/user-attachments/assets/765a15de-3a16-4e31-bc81-07ac9a2f253c" />
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
