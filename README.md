@@ -1,5 +1,5 @@
 # DE1-project
-Alarm_Clock - Projekt z predmetu DE1, tym Bagacka, Focher a Langova
+Alarm_Clock - Projekt z předmětu DE1, tým Bagačka, Focher a Langová
 
 Obr. 1: Prvotní verze blokového schéma pro Alarm Clock
 <img width="1227" height="656" alt="obrazek" src="https://github.com/user-attachments/assets/7d4be329-be60-4113-8527-3fd26c0ea448" />
