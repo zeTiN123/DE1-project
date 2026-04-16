@@ -15,7 +15,7 @@ Clock
 - counter_clock = čítač clk s vystupy "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu Compare a pro převody na vyšší jednotky času)
 "minutes" (převod sig_cnt (seconds) na uběhlé minuty pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
 "hours" (převod sig_cnt (seconds) na uběhlé hodiny pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
-G_max na 24*60*60 = 86400, tedy počet sekund v jednom dni (24 hodin)
+G_max na 24•60•60 = 86400, tedy počet sekund v jednom dni (24 hodin)
 
 Alarm
 - podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
