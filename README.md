@@ -49,6 +49,8 @@ Counter_Clock
 Obr. 2: Zobrazená simulace pro tb_counter_clock, zobrazující uplynulé sekundy, minuty a hodiny
 <img width="1649" height="812" alt="obrazek" src="https://github.com/user-attachments/assets/b78620fc-365f-4623-aba8-46201d8834dd" />
 
+Obr. 3: Zobrazená simulace pro tb_debounce_BTNC, zobrazující stisknutí tlačítka (začatek, konec, výchozí signál)
+<img width="1192" height="813" alt="obrazek" src="https://github.com/user-attachments/assets/bc528d11-74ba-46f3-b859-dcdbf86bde76" />
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
