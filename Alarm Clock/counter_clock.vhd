@@ -7,9 +7,11 @@ entity counter_clock is
         clk     : in  std_logic;                             
         rst     : in  std_logic;                           
         en      : in  std_logic;                          
-        seconds : out std_logic_vector(16 downto 0);    ---2 na 17 = az 131072 abychom meli dost mista na až 86400 sekund
-        minutes : out std_logic_vector(5 downto 0);     ---2 na 6 = 64 abychom meli dost mista na až 60 minut
-        hours   : out std_logic_vector(4 downto 0)      ---2 na 5 = 32 abychom meli dost mista na až 24 hodin        
+        total_seconds : out std_logic_vector(16 downto 0);    ---2 na 17 = az 131072 abychom meli dost mista na až 86400 sekund
+        minutes_x0 : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
+        minutes_0x : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
+        hours_x0   : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
+        hours_0x   : out std_logic_vector(3 downto 0)       ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
     );
 end entity counter_clock;
 
@@ -41,11 +43,12 @@ begin
         end if;
     end process p_counter;
 
-    seconds <= std_logic_vector(to_unsigned(sig_cnt, 17)); ---vystup sekund
+    total_seconds <= std_logic_vector(to_unsigned(sig_cnt, 17)); ---vystup celkových sekund
     
-    minutes <= std_logic_vector(to_unsigned((sig_cnt / 60) mod 60, 6)); ---prevedeny sekundy na minuty a jejich vystup
+    minutes_x0 <= std_logic_vector(to_unsigned(((sig_cnt / 60) mod 60)/10, 4)); ---prevedeny sekundy na minuty a jejich vystup-x0
+    minutes_0x <= std_logic_vector(to_unsigned(((sig_cnt / 60) mod 60) mod 10, 4)); ---prevedeny sekundy na minuty a jejich vystup-0x
 
-    hours <= std_logic_vector(to_unsigned((sig_cnt / 3600) mod 24, 5)); ---prevedeny sekundy na minuty, pak hodiny a jejich vystup
-    
+    hours_x0 <= std_logic_vector(to_unsigned(((sig_cnt / 3600) mod 24)/10, 4)); ---prevedeny sekundy na minuty, pak hodiny a jejich vystup-x0
+    hours_0x <= std_logic_vector(to_unsigned(((sig_cnt / 3600) mod 24) mod 10, 4)); ---prevedeny sekundy na minuty, pak hodiny a jejich vystup-0x
 
 end Behavioral;

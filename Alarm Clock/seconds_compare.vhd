@@ -8,7 +8,7 @@ entity seconds_compare is
            ce : in STD_LOGIC; -------1Hz interval pro pipani buzzeru
            buzzer_off : in STD_LOGIC; -------pripojeno na signal od press_btnc
            s_clock : in STD_LOGIC_vector (16 downto 0); ---aktualni pocet sekund z cloku
-           s_alarm : in STD_LOGIC_vector (16 downto 0); ---prepocteny sekundy z budiku pro compare, NASTAVENO NA 3 PRI ZACATKU ABY NEDOSLO K PIPNUTI PRI STARTU
+           s_alarm : in STD_LOGIC_vector (16 downto 0) := "00000000000000011"; ---prepocteny sekundy z budiku pro compare, NASTAVENO NA 3 PRI ZACATKU ABY NEDOSLO K PIPNUTI PRI STARTU
            buzzer_interval : out STD_LOGIC); ---vychozí 0 nebo 1 pro spustení budiku,alarmu
 end seconds_compare;
 
