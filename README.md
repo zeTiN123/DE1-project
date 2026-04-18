@@ -42,15 +42,22 @@ Debouncery
 - vytvořeny "debounce_btnu", "debounce_btnr" a "debounce_btnc" pro tlačítka BTNU, BTNR a BTNC.
 - vystupující signály se napojí převážně do modulu "counter_alarm" pro nastavení času budíku (Hours:Minutes)
 
+Obr. 2: Zobrazená simulace pro tb_debounce_BTNC, zobrazující stisknutí tlačítka (začatek, konec, výchozí signál)
+<img width="1192" height="813" alt="obrazek" src="https://github.com/user-attachments/assets/765a15de-3a16-4e31-bc81-07ac9a2f253c" />
+
 Counter_Clock
 - modul vytvořen, vystupem jsou opravdu uplynulé sekundy(CELKOVÉ sekundy pro compare!!!!!, NE zbytek sekund po přepočtu na minuty), minuty a hodiny
 - pro dosavadní testování je zvýšen sekundový čas, sig_en <= '1'; wait for 900 us;
   
-Obr. 2: Zobrazená simulace pro tb_counter_clock, zobrazující uplynulé sekundy, minuty a hodiny
+Obr. 3: Zobrazená simulace pro tb_counter_clock, zobrazující uplynulé sekundy, minuty a hodiny
 <img width="1649" height="812" alt="obrazek" src="https://github.com/user-attachments/assets/593b9d27-8c5c-4b3e-b080-1510a1dcb5cb" />
 
-Obr. 3: Zobrazená simulace pro tb_debounce_BTNC, zobrazující stisknutí tlačítka (začatek, konec, výchozí signál)
-<img width="1192" height="813" alt="obrazek" src="https://github.com/user-attachments/assets/765a15de-3a16-4e31-bc81-07ac9a2f253c" />
+Seconds_compare
+- vytvořena prvotni verze modulu pro porovnavani sekund z clocku a alarmu, s logickým vystupem 0 či 1 pro aktivaci buzzeru
+- compare porovnává, ale signál buzzeru je poslán v přesný okamžik shody -> úprava kódu přes counter, který umožní v Hz intervalech pípání buzzeru dokud není BTNC vypnut
+
+Obr. 3: Odsimulování pro Alarm na 3 sekundách, Clock si postupně dopočítá a při shodě je aktivován buzzer a běží dokud není BTNC vypnut
+<img width="1637" height="449" alt="obrazek" src="https://github.com/user-attachments/assets/20fb292a-d638-4b10-8802-e97aaceefc82" />
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
