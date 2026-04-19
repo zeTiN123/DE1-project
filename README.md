@@ -62,6 +62,13 @@ Obr. 3: Odsimulování pro Alarm na 3 sekundách, Clock si postupně dopočítá
 Obr. 4: Vylepšený Seconds_compare s vyřešením shody (pípnutí) na začátku a s výchozím signálem v podobě pípání v intervalech 
 <img width="1623" height="476" alt="obrazek" src="https://github.com/user-attachments/assets/15b0d6c3-9b51-431c-9eab-73306eefced8" />
 
+Clock_Display
+- upravená komponenta display_driver ze cvičení na jednotku zobrazující vstupní hodiny a minuty podle řádů na displej
+- nezapomenout upravit G_max na třeba 100_000 pro plynulé zobrazení (ideálně 1 kHz => 100_000_000/1000 = G_max = 100_000, zhruba 250 FPS)
+
+Obr. 5: Zobrazení pevně daných hodnot času (čas 13:58) do zobrazení na displeji pro an[3 až 0]
+<img width="1611" height="736" alt="obrazek" src="https://github.com/user-attachments/assets/dc087667-46ef-4baf-a66e-76744bf5201b" />
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Cv. 3.:
