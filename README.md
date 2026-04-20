@@ -66,8 +66,8 @@ Clock_Display
 - upravená komponenta display_driver ze cvičení na jednotku zobrazující vstupní hodiny a minuty podle řádů na displej
 - nezapomenout upravit G_max na třeba 100_000 pro plynulé zobrazení (ideálně 1 kHz => 100_000_000/1000 = G_max = 100_000, zhruba 250 FPS)
 
-Obr. 5: Zobrazení pevně daných hodnot času (čas 13:58) do zobrazení na displeji pro an[3 až 0]
-<img width="1611" height="736" alt="obrazek" src="https://github.com/user-attachments/assets/dc087667-46ef-4baf-a66e-76744bf5201b" />
+Obr. 5: Zobrazení pevně daných hodnot času CLOCKu (čas 13:58) a ALARMu (čas 21:09) do zobrazení na displeji pro an[7 až 0]
+<img width="1552" height="763" alt="obrazek" src="https://github.com/user-attachments/assets/abdb42ed-63a1-4b98-8a44-7e261fa9f1bc" />
 
 Counter_Alarm
 - vytvořen modul pro synchorní nastavování budíku, !!!!CO UDĚLÁ BUZZER_ON S BUZZER_OFF????
