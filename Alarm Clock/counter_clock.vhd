@@ -6,8 +6,10 @@ entity counter_clock is
         port (
         clk     : in  std_logic;                             
         rst     : in  std_logic;                           
-        en      : in  std_logic;                          
+        en      : in  std_logic;      
+                            
         total_clock_seconds : out std_logic_vector(16 downto 0);    ---2 na 17 = az 131072 abychom meli dost mista na až 86400 sekund
+        
         clk_minutes_x0 : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         clk_minutes_0x : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         clk_hours_x0   : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel

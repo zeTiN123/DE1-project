@@ -7,7 +7,7 @@ entity counter_alarm is
         clk     : in  std_logic;                             
         rst     : in  std_logic;                           
         en      : in  std_logic;
-        
+
         btnc_press : in std_logic;
         btnu_press : in std_logic;
         btnr_press : in std_logic;
@@ -15,6 +15,7 @@ entity counter_alarm is
         alarm_on : out std_logic;        ---1 => aktivní budík
                                 
         total_alarm_seconds : out std_logic_vector(16 downto 0);    ---2 na 17 = az 131072 abychom meli dost mista na až 86400 sekund
+        
         alr_minutes_x0 : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         alr_minutes_0x : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         alr_hours_x0   : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
