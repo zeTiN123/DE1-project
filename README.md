@@ -69,6 +69,15 @@ Clock_Display
 Obr. 5: Zobrazení pevně daných hodnot času (čas 13:58) do zobrazení na displeji pro an[3 až 0]
 <img width="1611" height="736" alt="obrazek" src="https://github.com/user-attachments/assets/dc087667-46ef-4baf-a66e-76744bf5201b" />
 
+Counter_Alarm
+- vytvořen modul pro synchorní nastavování budíku, !!!!CO UDĚLÁ BUZZER_ON S BUZZER_OFF????
+- BTNC -> zapnutí/ vypnutí budíku
+- BTNR -> posun v řádech jednotek zprava doprava, přeskok by měl přeskočit
+- BTNU -> nastavení hodnoty na dotyčném řádu, pouze zvyšuje a při přeskoku by měla od 0 
+
+Obr. 6: Zobrazení nastavování podle tlačítek požadovaného budíku (13:58) a výstup pro displej
+<img width="1572" height="792" alt="obrazek" src="https://github.com/user-attachments/assets/d20b0dd4-bef2-4ae5-9949-99dd041901ce" />
+
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Cv. 3.:
