@@ -6,7 +6,7 @@ entity seconds_compare is
     Port ( rst : in STD_LOGIC;
            clk : in STD_LOGIC;
            ce : in STD_LOGIC; -------1Hz interval pro pipani buzzeru
-           buzzer_off : in STD_LOGIC; -------pripojeno na signal od press_btnc
+           buzzer_off : in STD_LOGIC; -------pripojeno na signal od press_btnc NEBO SPISE OD COUNTER_ALARM -> alarm_on 
            s_clock : in STD_LOGIC_vector (16 downto 0); ---aktualni pocet sekund z cloku
            s_alarm : in STD_LOGIC_vector (16 downto 0) := "00000000000000011"; ---prepocteny sekundy z budiku pro compare, NASTAVENO NA 3 PRI ZACATKU ABY NEDOSLO K PIPNUTI PRI STARTU
            buzzer_interval : out STD_LOGIC); ---vychozí 0 nebo 1 pro spustení budiku,alarmu
