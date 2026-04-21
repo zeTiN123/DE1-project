@@ -19,7 +19,7 @@ entity counter_clock is
         clk_minutes_0x : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         clk_hours_x0   : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         clk_hours_0x   : out std_logic_vector(3 downto 0)       ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
-    );
+        );
 end entity counter_clock;
 
 -------------------------------------------------
