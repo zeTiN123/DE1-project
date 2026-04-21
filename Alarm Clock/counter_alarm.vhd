@@ -8,6 +8,7 @@ entity counter_alarm is
         rst     : in  std_logic;                           
         en      : in  std_logic;
 
+        sw_0 : in std_logic;
         btnc_press : in std_logic;
         btnu_press : in std_logic;
         btnr_press : in std_logic;
@@ -28,7 +29,7 @@ end entity counter_alarm;
 architecture Behavioral of counter_alarm is
  
     signal sig_alarm_on : std_logic := '0';     ---zapnutí/vypnutí budíku
-    signal sig_time_unit : integer range 0 to 3 := 0;     ---jaký zrovna řád chceme (0-> 0-9, 1-> 0-5, 2-> 0-9, 3-> 0-2)
+    signal sig_time_unit : integer range 0 to 3 := 3;     ---jaký zrovna řád chceme (0-> 0-9, 1-> 0-5, 2-> 0-9, 3-> 0-2)
     
     signal sig_m_0x : integer range 0 to 9 := 0;
     signal sig_m_x0 : integer range 0 to 5 := 0;
@@ -41,11 +42,11 @@ begin
    
     p_alarm_activate : process (clk) is     ---zapnutí a vypnutí pomocí BTNC, !!!CO TO ASI UDĚLÁ S PODMÍNKOU BTNC VYPNUTÍ BUDÍKU V COMPARE??????
     begin
-        if (clk = '1') then
+        if rising_edge(clk) then
             if rst = '1' then    
                 sig_alarm_on <= '0';
 
-            elsif btnc_press = '1' then  
+            elsif (btnc_press = '1' and sw_0 = '0') then  
                 sig_alarm_on <= not sig_alarm_on;       ---překlopeni zap/vyp       
             end if;
         end if;
@@ -53,10 +54,10 @@ begin
     
     p_time_unit_edit : process (clk) is     ---prepinani mezi rady budiku
     begin
-        if (clk = '1') then
+        if rising_edge(clk) then
             if (rst = '1') then         ---při startu cloku řád bude na 3
                 sig_time_unit <= 3;
-            elsif (btnr_press = '1') then       ---při potvrzeni se řád zase přepne na 0 pokud byl na 3
+            elsif (btnr_press = '1' and sw_0 = '0') then       ---při potvrzeni se řád zase přepne na 0 pokud byl na 3
                 if (sig_time_unit = 0) then     
                     sig_time_unit <= 3;
                 else sig_time_unit <= sig_time_unit - 1;        ---jinak se posune o další výše
@@ -67,13 +68,13 @@ begin
     
     p_alarm_setting : process (clk) is 
     begin   
-        if (clk = '1') then
+        if rising_edge(clk) then
             if (rst = '1') then
                 sig_m_0x <= 0;
                 sig_m_x0 <= 0;
                 sig_h_0x <= 0;
                 sig_h_x0 <= 0;
-                elsif (btnu_press = '1') then
+                elsif (btnu_press = '1' and sw_0 = '0') then
                     case sig_time_unit is
                         when 0 =>
                             if (sig_m_0x = 9) then
