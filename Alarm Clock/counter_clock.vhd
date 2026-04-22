@@ -40,7 +40,7 @@ begin
     p_clock_startstop : process (clk) is
     begin
         if rising_edge(clk) then
-            if (rst = '1') then
+            if (rst = '1' and sw_0 = '1') then
                 sig_clock_on <= '0';
             elsif (btnc_press = '1' and sw_0 = '1') then
                 sig_clock_on <= not sig_clock_on;
@@ -51,7 +51,7 @@ begin
     p_time_unit_edit : process (clk) is     ---prepinani mezi rady budiku
     begin
         if rising_edge(clk) then
-            if (rst = '1') then         ---při startu cloku řád bude na 3
+            if (rst = '1' and sw_0 = '1') then         ---při startu cloku řád bude na 3
                 sig_time_unit <= 7;
             elsif (btnr_press = '1' and sw_0 = '1') then       ---při potvrzeni se řád zase přepne na 0 pokud byl na 3
                 if (sig_time_unit = 4) then     
@@ -65,13 +65,13 @@ begin
     p_clock_setting : process (clk) is 
     begin   
         if rising_edge(clk) then
-            if (rst = '1') then
+            if (rst = '1' and sw_0 = '1') then
                 sig_seconds <= 0;
                 sig_m_0x <= 0;
                 sig_m_x0 <= 0;
                 sig_h_0x <= 0;
                 sig_h_x0 <= 0;
-                elsif (sig_clock_on = '0') then         ---anulovani sekund
+                elsif (sig_clock_on = '0' and sw_0 = '1') then         ---anulovani sekund
                     sig_seconds <= 0;
                 
                     if (btnu_press = '1' and sw_0 = '1') then

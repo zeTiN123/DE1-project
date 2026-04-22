@@ -15,9 +15,9 @@ architecture Behavioral of debounce_btnr is
     -- Constants
     ----------------------------------------------------------------
     constant C_SHIFT_LEN : positive := 4;  -- Debounce history
-    constant C_MAX       : positive := 2;  -- Sampling period
-                                           -- 2 for simulation
-                                           -- 200_000 (2 ms) for implementation !!!
+    constant C_MAX       : positive := 10;  -- Sampling period
+                                           -- 10 for simulation
+                                           -- 1_000_000 (2 ms) for implementation !!!
 
     ----------------------------------------------------------------
     -- Internal signals

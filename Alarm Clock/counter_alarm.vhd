@@ -55,7 +55,7 @@ begin
     p_time_unit_edit : process (clk) is     ---prepinani mezi rady budiku
     begin
         if rising_edge(clk) then
-            if (rst = '1') then         ---při startu cloku řád bude na 3
+            if (rst = '1' and sw_0 = '0') then         ---při startu cloku řád bude na 3
                 sig_time_unit <= 3;
             elsif (btnr_press = '1' and sw_0 = '0') then       ---při potvrzeni se řád zase přepne na 0 pokud byl na 3
                 if (sig_time_unit = 0) then     

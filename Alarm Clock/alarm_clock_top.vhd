@@ -4,7 +4,6 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity alarm_clock_top is
     Port (  clk : in std_logic;
-            --rst : in std_logic;
             
             btnu : in std_logic;
             btnc : in std_logic;
@@ -112,6 +111,7 @@ architecture Behavioral of alarm_clock_top is
     Port (  rst             : in STD_LOGIC;
             clk             : in STD_LOGIC;
             ce              : in STD_LOGIC; 
+            alarm_en        : in std_logic;
             buzzer_off      : in STD_LOGIC; 
             s_clock         : in STD_LOGIC_vector (16 downto 0); 
             s_alarm         : in STD_LOGIC_vector (16 downto 0); 
@@ -155,12 +155,13 @@ architecture Behavioral of alarm_clock_top is
     signal sig_alr_mx0 : std_logic_vector (3 downto 0);
     signal sig_alr_h0x : std_logic_vector (3 downto 0);
     signal sig_alr_hx0 : std_logic_vector (3 downto 0);
+    
     signal sig_buzz_off : std_logic;
 
 begin
     
     gen_Hz : clk_en
-        generic map (G_max => 100000000)
+        generic map (G_max => 20)  --- pro desku 100_000_000, pro sim 20
         port map (
             clk => clk,
             rst => sw(15),
@@ -240,6 +241,7 @@ begin
             rst => sw(15),
             ce => sig_cnt_en,
             buzzer_off => sig_buzz_off,
+            alarm_en => sw(1),
             
             s_clock => sig_s_clock,
             s_alarm => sig_s_alarm,

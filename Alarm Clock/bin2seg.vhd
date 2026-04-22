@@ -32,18 +32,6 @@ begin
                 seg <= b"000_0000";
             when x"9" =>
                 seg <= b"000_0100";
-            when x"A" =>
-                seg <= b"000_1000";
-            when x"B" =>
-                seg <= b"110_0000";
-            when x"C" =>
-                seg <= b"011_0001";
-            when x"D" =>
-                seg <= b"100_0010";
-            when x"E" =>
-                seg <= b"011_0000";
-            when x"F" =>
-                seg <= b"011_1000";
             when others =>
                 seg <= b"111_1111";
         end case;
