@@ -4,7 +4,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity alarm_clock_top is
     Port (  clk : in std_logic;
-            rst : in std_logic;
+            --rst : in std_logic;
             
             btnu : in std_logic;
             btnc : in std_logic;
@@ -14,7 +14,7 @@ entity alarm_clock_top is
             
             seg : out std_logic_vector (6 downto 0);
             an : out std_logic_vector (7 downto 0);
-            led : out std_logic_vector (15 downto 0)
+            led16_r : out std_logic
             );
 end alarm_clock_top;
 
@@ -163,14 +163,14 @@ begin
         generic map (G_max => 100000000)
         port map (
             clk => clk,
-            rst => rst,
+            rst => sw(15),
             ce => sig_cnt_en
         );
     
     debounce_btnu_0 : debounce_btnu
         port map (
             clk       => clk,
-            rst       => rst,
+            rst       => sw(15),
             btnu_in    => btnu,
             btnu_press => sig_btnu_press
         );
@@ -178,7 +178,7 @@ begin
     debounce_btnc_0 : debounce_btnc
         port map (
             clk       => clk,
-            rst       => rst,
+            rst       => sw(15),
             btnc_in    => btnc,
             btnc_press => sig_btnc_press
         );
@@ -186,7 +186,7 @@ begin
     debounce_btnr_0 : debounce_btnr
         port map (
             clk       => clk,
-            rst       => rst,
+            rst       => sw(15),
             btnr_in    => btnr,
             btnr_press => sig_btnr_press
         );
@@ -194,7 +194,7 @@ begin
     debounce_btnd_0 : debounce_btnd
         port map (
             clk       => clk,
-            rst       => rst,
+            rst       => sw(15),
             btnd_in    => btnd,
             btnd_press => sig_buzz_off
         );
@@ -202,7 +202,7 @@ begin
     counter_clock_0 : counter_clock
         port map (
             clk     => clk,
-            rst     => rst,
+            rst     => sw(15),
             en => sig_cnt_en,
             btnu_press => sig_btnu_press,
             btnc_press => sig_btnc_press,
@@ -218,7 +218,7 @@ begin
     counter_alarm_0 : counter_alarm
         port map (
             clk     => clk,
-            rst     => rst,
+            rst     => sw(15),
             en => sig_cnt_en,
             btnu_press => sig_btnu_press,
             btnc_press => sig_btnc_press,
@@ -237,20 +237,20 @@ begin
     compare : seconds_compare
         port map (
             clk => clk,
-            rst => rst,
+            rst => sw(15),
             ce => sig_cnt_en,
             buzzer_off => sig_buzz_off,
             
             s_clock => sig_s_clock,
             s_alarm => sig_s_alarm,
             
-            buzzer_interval => led(15)
+            buzzer_interval => led16_r
         );
     
     display : clock_display
         port map (
             clk => clk,
-            rst => rst,
+            rst => sw(15),
             
             clk_minutes_0x => sig_clk_m0x,
             clk_minutes_x0 => sig_clk_mx0,
