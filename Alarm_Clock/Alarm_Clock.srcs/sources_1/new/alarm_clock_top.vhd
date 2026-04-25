@@ -27,45 +27,16 @@ architecture Behavioral of alarm_clock_top is
             );
     end component clk_en;
     
-    component debounce_btnu is
+    component debounce is
     Port (  clk : in STD_LOGIC;
             rst : in STD_LOGIC;
-            btnu_in : in STD_LOGIC;
-            btnu_state : out STD_LOGIC;
-            btnu_release : out STD_LOGIC;
-            btnu_press : out STD_LOGIC
+            btn_in : in STD_LOGIC;
+            btn_state : out STD_LOGIC;
+            btn_press : out STD_LOGIC
             );
-    end component debounce_btnu;
+    end component debounce;
     
-    component debounce_btnr is
-    Port (  clk : in STD_LOGIC;
-            rst : in STD_LOGIC;
-            btnr_in : in STD_LOGIC;
-            btnr_state : out STD_LOGIC;
-            btnr_release : out STD_LOGIC;
-            btnr_press : out STD_LOGIC
-            );
-    end component debounce_btnr;
     
-    component debounce_btnc is
-    Port (  clk : in STD_LOGIC;
-            rst : in STD_LOGIC;
-            btnc_in : in STD_LOGIC;
-            btnc_state : out STD_LOGIC;
-            btnc_release : out STD_LOGIC;
-            btnc_press : out STD_LOGIC
-            );
-    end component debounce_btnc;
-    
-    component debounce_btnd is
-    Port (  clk : in STD_LOGIC;
-            rst : in STD_LOGIC;
-            btnd_in : in STD_LOGIC;
-            btnd_state : out STD_LOGIC;
-            btnd_release : out STD_LOGIC;
-            btnd_press : out STD_LOGIC
-            );
-    end component debounce_btnd;
     
     component counter_clock is
     port (  clk     : in  std_logic;                             
@@ -168,36 +139,40 @@ begin
             ce => sig_cnt_en
         );
     
-    debounce_btnu_0 : debounce_btnu
+    debounce_btnu_0 : debounce
         port map (
             clk       => clk,
             rst       => sw(15),
-            btnu_in    => btnu,
-            btnu_press => sig_btnu_press
+            btn_in    => btnu,
+            btn_press => sig_btnu_press,
+            btn_state => open
         );
         
-    debounce_btnc_0 : debounce_btnc
+    debounce_btnc_0 : debounce
         port map (
             clk       => clk,
             rst       => sw(15),
-            btnc_in    => btnc,
-            btnc_press => sig_btnc_press
+            btn_in    => btnc,
+            btn_press => sig_btnc_press,
+            btn_state => open
         );
         
-    debounce_btnr_0 : debounce_btnr
+    debounce_btnr_0 : debounce
         port map (
             clk       => clk,
             rst       => sw(15),
-            btnr_in    => btnr,
-            btnr_press => sig_btnr_press
+            btn_in    => btnr,
+            btn_press => sig_btnr_press,
+            btn_state => open
         );
         
-    debounce_btnd_0 : debounce_btnd
+    debounce_btnd_0 : debounce
         port map (
             clk       => clk,
             rst       => sw(15),
-            btnd_in    => btnd,
-            btnd_press => sig_buzz_off
+            btn_in    => btnd,
+            btn_press => sig_buzz_off,
+            btn_state => open
         );
         
     counter_clock_0 : counter_clock

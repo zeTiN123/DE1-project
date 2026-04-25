@@ -1,23 +1,31 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity debounce_btnr is
+-- Uncomment the following library declaration if using
+-- arithmetic functions with Signed or Unsigned values
+--use IEEE.NUMERIC_STD.ALL;
+
+-- Uncomment the following library declaration if instantiating
+-- any Xilinx leaf cells in this code.
+--library UNISIM;
+--use UNISIM.VComponents.all;
+
+entity debounce is
     Port ( clk : in STD_LOGIC;
            rst : in STD_LOGIC;
-           btnr_in : in STD_LOGIC;
-           btnr_state : out STD_LOGIC;
-           btnr_release : out STD_LOGIC;
-           btnr_press : out STD_LOGIC);
-end debounce_btnr;
+           btn_in : in STD_LOGIC;
+           btn_state : out STD_LOGIC;
+           btn_press : out STD_LOGIC);
+end debounce;
 
-architecture Behavioral of debounce_btnr is
+architecture Behavioral of debounce is
     ----------------------------------------------------------------
     -- Constants
     ----------------------------------------------------------------
     constant C_SHIFT_LEN : positive := 4;  -- Debounce history
-    constant C_MAX       : positive := 10;  -- Sampling period
-                                           -- 10 for simulation
-                                           -- 1_000_000 (2 ms) for implementation !!!
+    constant C_MAX       : positive := 200_000;  -- Sampling period
+                                           -- 2 for simulation
+                                           -- 200_000 (2 ms) for implementation !!!
 
     ----------------------------------------------------------------
     -- Internal signals
@@ -69,7 +77,7 @@ begin
             else
                 -- Input synchronizer
                 sync1 <= sync0;
-                sync0 <= btnr_in; -- Opraveno na btnu_in
+                sync0 <= btn_in;
 
                 -- Sample only when enable pulse occurs
                 if ce_sample = '1' then
@@ -96,10 +104,9 @@ begin
     ----------------------------------------------------------------
     -- Outputs
     ----------------------------------------------------------------
-    btnr_state <= debounced; -- Opraveno na btnu_state
+    btn_state <= debounced;
 
     -- One-clock pulse when button pressed
-    btnr_press <= debounced and not(delayed);    -- Opraveno na btnu_press
-    btnr_release <= delayed and not(debounced);  -- Opraveno na btnu_release
+    btn_press <= debounced and not(delayed);
 
 end Behavioral;
