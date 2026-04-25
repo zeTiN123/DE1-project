@@ -1,0 +1,30 @@
+Vivado Simulator v2025.2
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+Running: C:/APPZ/AMDDesignTools/2025.2/Vivado/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L secureip --snapshot tb_alarm_clock_top_behav xil_defaultlib.tb_alarm_clock_top -log elaborate.log 
+Using 2 slave threads.
+Starting static elaboration
+Completed static elaboration
+Starting simulation data flow analysis
+Completed simulation data flow analysis
+Time Resolution for simulation is 1ps
+Compiling package std.standard
+Compiling package std.textio
+Compiling package ieee.std_logic_1164
+Compiling package ieee.numeric_std
+Compiling architecture behavioral of entity xil_defaultlib.clk_en [\clk_en(g_max=20)\]
+Compiling architecture behavioral of entity xil_defaultlib.clk_en [\clk_en(g_max=10)\]
+Compiling architecture behavioral of entity xil_defaultlib.debounce_btnu [debounce_btnu_default]
+Compiling architecture behavioral of entity xil_defaultlib.debounce_btnc [debounce_btnc_default]
+Compiling architecture behavioral of entity xil_defaultlib.debounce_btnr [debounce_btnr_default]
+Compiling architecture behavioral of entity xil_defaultlib.debounce_btnd [debounce_btnd_default]
+Compiling architecture behavioral of entity xil_defaultlib.counter_clock [counter_clock_default]
+Compiling architecture behavioral of entity xil_defaultlib.counter_alarm [counter_alarm_default]
+Compiling architecture behavioral of entity xil_defaultlib.seconds_compare [seconds_compare_default]
+Compiling architecture behavioral of entity xil_defaultlib.clk_en [\clk_en(g_max=2)\]
+Compiling architecture behavioral of entity xil_defaultlib.counter [counter_default]
+Compiling architecture behavioral of entity xil_defaultlib.bin2seg [bin2seg_default]
+Compiling architecture behavioral of entity xil_defaultlib.clock_display [clock_display_default]
+Compiling architecture behavioral of entity xil_defaultlib.alarm_clock_top [alarm_clock_top_default]
+Compiling architecture tb of entity xil_defaultlib.tb_alarm_clock_top
+Built simulation snapshot tb_alarm_clock_top_behav

@@ -1,0 +1,18 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../Alarm_Clock.srcs/sources_1/new/alarm_clock_top.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/bin2seg.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/imports/new/clk_en.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/clock_display.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/imports/new/counter.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/counter_alarm.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/counter_clock.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/debounce_btnc.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/debounce_btnd.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/debounce_btnr.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/debounce_btnu.vhd" \
+"../../../../Alarm_Clock.srcs/sources_1/new/seconds_compare.vhd" \
+"../../../../Alarm_Clock.srcs/sim_1/new/tb_alarm_clock_top.vhd" \
+
+# Do not sort compile order
+nosort

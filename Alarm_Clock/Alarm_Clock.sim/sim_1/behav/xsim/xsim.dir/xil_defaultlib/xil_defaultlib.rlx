@@ -1,0 +1,23 @@
+0.7
+2020.2
+Nov 14 2025
+19:37:27
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sim_1/new/tb_alarm_clock_top.vhd,1776885487,vhdl,,,,tb_alarm_clock_top,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sim_1/new/tb_clk_en.vhd,1776275388,vhdl,,,,tb_clk_en,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sim_1/new/tb_clock_display.vhd,1776711430,vhdl,,,,cfg_tb_clock_display;tb_clock_display,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sim_1/new/tb_counter_alarm.vhd,1776709496,vhdl,,,,cfg_tb_counter_alarm;tb_counter_alarm,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sim_1/new/tb_counter_clock.vhd,1776794970,vhdl,,,,cfg_tb_counter_clock;tb_counter_clock,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sim_1/new/tb_debounce_btnc.vhd,1776337645,vhdl,,,,cfg_tb_debounce_btnc;tb_debounce_btnc,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sim_1/new/tb_seconds_compare.vhd,1776530896,vhdl,,,,cfg_tb_seconds_compare;tb_seconds_compare,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/imports/new/clk_en.vhd,1776599786,vhdl,,,,clk_en,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/imports/new/counter.vhd,1773244626,vhdl,,,,counter,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/alarm_clock_top.vhd,1776884351,vhdl,,,,alarm_clock_top,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/bin2seg.vhd,1776871664,vhdl,,,,bin2seg,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/clock_display.vhd,1776878906,vhdl,,,,clock_display,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/counter_alarm.vhd,1776867620,vhdl,,,,counter_alarm,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/counter_clock.vhd,1776871298,vhdl,,,,counter_clock,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/debounce_btnc.vhd,1776879008,vhdl,,,,debounce_btnc,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/debounce_btnd.vhd,1776879042,vhdl,,,,debounce_btnd,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/debounce_btnr.vhd,1776879025,vhdl,,,,debounce_btnr,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/debounce_btnu.vhd,1776878956,vhdl,,,,debounce_btnu,,,,,,,,
+C:/Users/majaf/Documents/Vivado/Alarm_Clock/Alarm_Clock.srcs/sources_1/new/seconds_compare.vhd,1776884606,vhdl,,,,seconds_compare,,,,,,,,
