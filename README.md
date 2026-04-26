@@ -12,7 +12,7 @@ Obr. 2: Aktualizované schéma pro Alarm Clock
 <img width="1227" height="656" alt="obrazek" src="https://github.com/zeTiN123/DE1-project/blob/d7a37a922bcf3f72e7f0defbf883613ca68964c2/Pictures/image0.jpg" /> -->
 
 Schéma zapojení:
-<img width="1227" height="656" alt="obrazek" src="![Pictures/schema3.png](https://github.com/zeTiN123/DE1-project/blob/d08e46b1b397b54092553988675b59afa9f9cf55/Pictures/schema3.png)" />
+<img width="1227" height="656" alt="obrazek" src="Pictures/schema3.png" />
 
 
 Princip či premise:
