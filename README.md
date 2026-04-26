@@ -3,18 +3,22 @@ Alarm_Clock - Projekt z předmětu DE1, tým Bagačka, Focher a Langová
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Cv. 1.:
+
 <!-- 
+Cv. 1.:
 Obr. 1: Prvotní verze blokového schéma pro Alarm Clock
 <img width="1227" height="656" alt="obrazek" src="https://github.com/user-attachments/assets/92999e23-0832-4dd0-afc5-6c04e7930755" />
 
 Obr. 2: Aktualizované schéma pro Alarm Clock
 <img width="1227" height="656" alt="obrazek" src="https://github.com/zeTiN123/DE1-project/blob/d7a37a922bcf3f72e7f0defbf883613ca68964c2/Pictures/image0.jpg" /> -->
 
-Schéma zapojení:
-<img width="1227" height="656" alt="obrazek" src="Pictures/schema3.png" />
 
 
+
+
+
+
+<!--
 Princip či premise:
 - Principální rozděleni Nexys A7 50T segmentovek na 2 části: 1. část, tedy an[3->0], zobrazuje Clock a 2. část (an[7->4]) zobrazuje Alarm. 
 
@@ -35,10 +39,40 @@ Compare
 
 Buzzer
 - deska má vástup typu mono audio output, tedy buď zkusíme připojit na jednoduchý reproduktor a vytvoříme modul pro zvukovou signalizaci,
-a nebo, což se jeví ve fázi simulaci a vytváření přijatelnější, světelná signalizace RGB LEDky za stanovené frekvence  
+a nebo, což se jeví ve fázi simulaci a vytváření přijatelnější, světelná signalizace RGB LEDky za stanovené frekvence  -->
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+## Obecný popis
+Projekt má realizovat Budík (=Alarm Clock), kde lze
+1.	Nastavit a odpočítávat ubíhající čas realizovaný pomocí modulu counter_clock
+2.	Nastavit čas, při kterém se aktivuje signalizace realizované pomocí modulů counter_alarm a compare_seconds
+3.	Zobrazení obou časů – realizováno pomocí clock_display
+Čas je zobrazován ve 24 hodinovém formátu ve tvaru Hodiny:Minuty.
+7-segmentové displeje jsou využity následovně: 1. část, tedy an[3->0], zobrazuje čas hodin (counter_clock) a 2. část (an[7->4]) zobrazuje budík( counter_alarm). 
+Nastavování času se provádí pomocí tlačítek BTNU, BTNR a spínače SW[0] (blíže popsané v ___).
+Signalizace je realizovaná pomocí RGB LED. Ovládá se pomocí SW[1] a BTND.
+
+
+## Schéma zapojení:
+<img width="1227" height="656" alt="obrazek" src="Pictures/schema3.png" />
+<!-- potřeba doplnit popisy jednotlivých komponent -->
+## Popis jednotlivých komponent
+
+### Debouncer
+Komponenta ze cvičení, ošetřuje vstupy z tlačítek.
+### Clk_en
+Komponenta ze cvičení, ___
+### Counter_clock 
+
+### Counter_alarm
+### Seconds_compare
+### Display_driver
+
+
+## Simulace nových komponent
+
+<!--
 Cv. 2.:
 - počátky vytváření modulů a testování něktrých testbenchů
 
@@ -54,40 +88,56 @@ Obr. 2: Zobrazená simulace pro tb_debounce_BTNC, zobrazující stisknutí tlač
 
 Counter_Clock
 - modul vytvořen, vystupem jsou opravdu uplynulé sekundy(CELKOVÉ sekundy pro compare!!!!!, NE zbytek sekund po přepočtu na minuty), minuty a hodiny
-- pro dosavadní testování je zvýšen sekundový čas, sig_en <= '1'; wait for 900 us;
+- pro dosavadní testování je zvýšen sekundový čas, sig_en <= '1'; wait for 900 us; -->
   
 Obr. 3: Zobrazená simulace pro tb_counter_clock, zobrazující uplynulé sekundy, minuty a hodiny
 <img width="1649" height="812" alt="obrazek" src="https://github.com/user-attachments/assets/593b9d27-8c5c-4b3e-b080-1510a1dcb5cb" />
 
+<!--
 Seconds_compare
 - vytvořena prvotni verze modulu pro porovnavani sekund z clocku a alarmu, s logickým vystupem 0 či 1 pro aktivaci buzzeru
-- compare porovnává, ale signál buzzeru je poslán v přesný okamžik shody -> úprava kódu přes counter, který umožní v Hz intervalech pípání buzzeru dokud není BTNC vypnut
+- compare porovnává, ale signál buzzeru je poslán v přesný okamžik shody -> úprava kódu přes counter, který umožní v Hz intervalech pípání buzzeru dokud není BTNC vypnut  -->
 
-Obr. 3: Odsimulování pro Alarm na 3 sekundách, Clock si postupně dopočítá a při shodě je aktivován buzzer v ustáleném bzučení a dokud není pomocí BTNC vypnut
+Obr. 3: Odsimulování pro Alarm na 3 sekundách, Clock si postupně dopočítá a při shodě je aktivován buzzer v ustáleném bzučení a dokud není pomocí BTN_ vypnut
 <img width="1637" height="449" alt="obrazek" src="https://github.com/user-attachments/assets/20fb292a-d638-4b10-8802-e97aaceefc82" />
 
 Obr. 4: Vylepšený Seconds_compare s vyřešením shody (pípnutí) na začátku a s výchozím signálem v podobě pípání v intervalech 
 <img width="1623" height="476" alt="obrazek" src="https://github.com/user-attachments/assets/15b0d6c3-9b51-431c-9eab-73306eefced8" />
 
+<!--
 Clock_Display
 - upravená komponenta display_driver ze cvičení na jednotku zobrazující vstupní hodiny a minuty podle řádů na displej
 - nezapomenout upravit G_max na třeba 100_000 pro plynulé zobrazení (ideálně 1 kHz => 100_000_000/1000 = G_max = 100_000, zhruba 250 FPS)
-
+ -->
 Obr. 5: Zobrazení pevně daných hodnot času CLOCKu (čas 13:58) a ALARMu (čas 21:09) do zobrazení na displeji pro an[7 až 0]
 <img width="1552" height="763" alt="obrazek" src="https://github.com/user-attachments/assets/abdb42ed-63a1-4b98-8a44-7e261fa9f1bc" />
-
+<!--
 Counter_Alarm
 - vytvořen modul pro synchorní nastavování budíku, !!!!CO UDĚLÁ BUZZER_ON S BUZZER_OFF????
 - BTNC -> zapnutí/ vypnutí budíku
 - BTNR -> posun v řádech jednotek zprava doprava, přeskok by měl přeskočit
 - BTNU -> nastavení hodnoty na dotyčném řádu, pouze zvyšuje a při přeskoku by měla od 0 
-
+ -->
 Obr. 6: Zobrazení nastavování podle tlačítek požadovaného budíku (13:58) a výstup pro displej
 <img width="1572" height="792" alt="obrazek" src="https://github.com/user-attachments/assets/d20b0dd4-bef2-4ae5-9949-99dd041901ce" />
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+<!--
 Cv. 3.:
 -
 
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ -->
+
+## Ovládání 
+
+| Vstup  | Funkce                                                                                                                         |
+|--------|--------------------------------------------------------------------------------------------------------------------------------|
+| BTNC   | Přepínání mezi režimem nastavování času a odpočítáváním času                                                                   |
+| BTNR   | Přepínání mezi nastavovanými řády času                                                                                         |
+| BTNU   | Nastavovaní hodnoty na daném řádu                                                                                              |
+| BTND   | Vypnutí blikání RGB LED                                                                                                        |
+| SW[0]  | Přepínání mezi nastavováním hodin (clock) a budíku(alarm)                                                                      |
+| SW[1]  | Nařízení budíku, vypnuté = RGB LED nebude blikat při shodě obou časů, sepnuté - RGB LED bude při shodě nastavených časů blikat |
+| SW[15] | Resetování celého systému - vynuluování hodin a budíku                                                                         |
+
