@@ -4,12 +4,16 @@ Alarm_Clock - Projekt z předmětu DE1, tým Bagačka, Focher a Langová
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 Cv. 1.:
-
+<!-- 
 Obr. 1: Prvotní verze blokového schéma pro Alarm Clock
 <img width="1227" height="656" alt="obrazek" src="https://github.com/user-attachments/assets/92999e23-0832-4dd0-afc5-6c04e7930755" />
 
 Obr. 2: Aktualizované schéma pro Alarm Clock
-<img width="1227" height="656" alt="obrazek" src="https://github.com/zeTiN123/DE1-project/blob/d7a37a922bcf3f72e7f0defbf883613ca68964c2/Pictures/image0.jpg" />
+<img width="1227" height="656" alt="obrazek" src="https://github.com/zeTiN123/DE1-project/blob/d7a37a922bcf3f72e7f0defbf883613ca68964c2/Pictures/image0.jpg" /> -->
+
+Schéma zapojení:
+
+
 
 Princip či premise:
 - Principální rozděleni Nexys A7 50T segmentovek na 2 části: 1. část, tedy an[3->0], zobrazuje Clock a 2. část (an[7->4]) zobrazuje Alarm. 
