@@ -56,22 +56,22 @@ Signalizace je realizovaná pomocí RGB LED. Ovládá se pomocí SW[1] a BTND.
 ## Popis jednotlivých komponent
 
 ### Debouncer
-Komponenta ze cvičení, ošetřuje vstupy z tlačítek.
+&nbsp;&nbsp;&nbsp;&nbsp;Komponenta ze cvičení, ošetřuje vstupy z tlačítek.
 ### Clk_en
-Komponenta ze cvičení, ___
+&nbsp;&nbsp;&nbsp;&nbsp;Komponenta ze cvičení, generuje signál s periodou 1s, slouží jako základ pro odpočítávání času. G_MAX je nastaveno na 100_000_000.
 ### Counter_clock 
 #### p_clock_startstop
-    Proces reaguje na stisknutí tlačítka BTNC, kterým mění hodnotu sig_clock_on určující jestli hodiny ubíhají nebo ne(=nastavuje se čas)
+&nbsp;&nbsp;&nbsp;&nbsp;Proces reaguje na stisknutí tlačítka BTNC, kterým mění hodnotu sig_clock_on určující jestli hodiny ubíhají nebo ne(=nastavuje se čas)
 #### p_time_unit_edit
-    Proces reaguje na stisk tlačítka btnr, počítá stisknutí (sig_time_unit) a posouvá nastavovaný řád od minut na hodiny
+&nbsp;&nbsp;&nbsp;&nbsp;Proces reaguje na stisk tlačítka btnr, počítá stisknutí (sig_time_unit) a posouvá nastavovaný řád od minut na hodiny
 #### p_clock_setting
-    Proces zajišťuje jak ošetření nastavování řádu jednotlivých digit tak přičítání sekund k aktuánímu času při běhu hodin
-    Výstupy "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu compare a pro převody na vyšší jednotky času) "minutes" (převod sig_cnt (seconds) na uběhlé minuty pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.) "hours" (převod sig_cnt (seconds) na uběhlé hodiny pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
+&nbsp;&nbsp;&nbsp;&nbsp;Proces zajišťuje jak ošetření nastavování řádu jednotlivých digit tak přičítání sekund k aktuánímu času při běhu hodin.
+&nbsp;&nbsp;&nbsp;&nbsp;Výstupy "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu compare a pro převody na vyšší jednotky času) "minutes" (převod sig_cnt (seconds) na uběhlé minuty pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.) "hours" (převod sig_cnt (seconds) na uběhlé hodiny pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
 ### Counter_alarm
 #### p_time_unit_edit
-    Funguje stejně jako u counter_clock
+&nbsp;&nbsp;&nbsp;&nbsp;Funguje stejně jako u counter_clock.
 #### p_alarm_setting
-    Ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy
+&nbsp;&nbsp;&nbsp;&nbsp;Ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy
 
 <--! podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
 vychozí zase "seconds", "minutes" a "hours", sekundy pro porovnání, minuty a hodiny na zobrazeni 
@@ -79,11 +79,10 @@ myšlenka: "uživatel si tlačítky asi BTNU, BTNR a BTNC zvolí čas k spuště
 BTNC asi pro potvrzení a spuštění, čítač zde spíše funguje pro synchronizaci s Clockem" -->
 
 ### Seconds_compare
-    - komponenta porovnává počet uběhlých sekund z counter_clock (hodin) s počtem sekund z counter_alarm (budíku)
-    - při schodě těchto dvou hodnot se aktivuje blikání RGB LED
+&nbsp;&nbsp;&nbsp;&nbsp;Komponenta porovnává počet uběhlých sekund z counter_clock (hodin) s počtem sekund z counter_alarm (budíku). Při shodě těchto dvou hodnot se aktivuje blikání RGB LED.
 ### Display_driver
-Datových vstupů je 8, jsou 4 to hodnoty času pro jednotlivé digity hodin a stejný počet pro budík. 
-Anody an[3->0], zobrazuje čas hodin, (an[7->4]) zobrazuje čas nastavený na budíku.
+&nbsp;&nbsp;&nbsp;&nbsp; Datových vstupů je 8, jsou 4 to hodnoty času pro jednotlivé digity hodin a stejný počet pro budík. 
+&nbsp;&nbsp;&nbsp;&nbsp;Anody an[3->0], zobrazují čas hodin, an[7->4] zobrazují čas nastavený na budíku.
 
 ## Ovládání 
 
