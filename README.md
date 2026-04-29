@@ -50,7 +50,7 @@ Signalizace je realizovaná pomocí RGB LED. Ovládá se pomocí SW[1] a BTND.
 
 
 ## Schéma zapojení:
-<img width="1227" height="656" alt="obrazek" src="Pictures/schema3.png" />
+<img width="1227" height="656" alt="obrazek" src="Pictures/schema3.1.png" />
 <!-- potřeba doplnit popisy jednotlivých komponent -->
 ## Popis jednotlivých komponent
 
