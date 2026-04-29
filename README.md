@@ -59,15 +59,20 @@ Komponenta ze cvičení, ošetřuje vstupy z tlačítek.
 ### Clk_en
 Komponenta ze cvičení, ___
 ### Counter_clock 
-p_clock_startstop  -  proces reaguje na stisknutí tlačítka BTNC, kterým mění hodnotu sig_clock_on určující jestli hodiny ubíhají nebo ne(=nastavuje se čas)
-p_time_unit_edit  - proces reaguje na stisk tlačítka btnr, počítá stisknutí (sig_time_unit) a posouvá nastavovaný řád od minut na hodiny
-p_clock_setting - proces zajišťuje jak ošetření nastavování řádu jednotlivých digit tak přičítání sekund k aktuánímu času při běhu hodin
-Vystupy "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu compare a pro převody na vyšší jednotky času)
+#### p_clock_startstop
+    - proces reaguje na stisknutí tlačítka BTNC, kterým mění hodnotu sig_clock_on určující jestli hodiny ubíhají nebo ne(=nastavuje se čas)
+#### p_time_unit_edit
+    - proces reaguje na stisk tlačítka btnr, počítá stisknutí (sig_time_unit) a posouvá nastavovaný řád od minut na hodiny
+#### p_clock_setting
+    - proces zajišťuje jak ošetření nastavování řádu jednotlivých digit tak přičítání sekund k aktuánímu času při běhu hodin
+    - Vystupy "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu compare a pro převody na vyšší jednotky času)
 "minutes" (převod sig_cnt (seconds) na uběhlé minuty pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
 "hours" (převod sig_cnt (seconds) na uběhlé hodiny pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
 ### Counter_alarm
-p_time_unit_edit  - funguje stejně jako u counter_clock
-p_alarm_setting  - ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy
+#### p_time_unit_edit
+    - funguje stejně jako u counter_clock
+#### p_alarm_setting
+    - ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy
 <--!podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
 vychozí zase "seconds", "minutes" a "hours", sekundy pro porovnání, minuty a hodiny na zobrazeni 
 myšlenka: "uživatel si tlačítky asi BTNU, BTNR a BTNC zvolí čas k spuštění budíku, volí si hodiny a minuty, ty se převedou zpět na sekundy a vyvodí "seconds"  pro porovnání,
@@ -76,6 +81,8 @@ BTNC asi pro potvrzení a spuštění, čítač zde spíše funguje pro synchron
 komponenta porovnává počet uběhlých sekund z counter_clock (hodin) s počtem sekund z counter_alarm (budíku)
 ### Display_driver
 Datových vstupů je 8, jsou 4 to hodnoty času pro jednotlivé digity hodin a stejný počet pro budík. 
+Anody an[3->0], zobrazuje čas hodin, (an[7->4]) zobrazuje čas nastavený na budíku.
+
 
 
 ## Ovládání 
