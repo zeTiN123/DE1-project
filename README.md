@@ -13,11 +13,6 @@ Obr. 2: Aktualizované schéma pro Alarm Clock
 <img width="1227" height="656" alt="obrazek" src="https://github.com/zeTiN123/DE1-project/blob/d7a37a922bcf3f72e7f0defbf883613ca68964c2/Pictures/image0.jpg" /> -->
 
 
-
-
-
-
-
 <!--
 Princip či premise:
 - Principální rozděleni Nexys A7 50T segmentovek na 2 části: 1. část, tedy an[3->0], zobrazuje Clock a 2. část (an[7->4]) zobrazuje Alarm. 
@@ -50,7 +45,7 @@ Projekt má realizovat Budík (=Alarm Clock), kde lze
 3.	Zobrazení obou časů – realizováno pomocí clock_display
 Čas je zobrazován ve 24 hodinovém formátu ve tvaru Hodiny:Minuty.
 7-segmentové displeje jsou využity následovně: 1. část, tedy an[3->0], zobrazuje čas hodin (counter_clock) a 2. část (an[7->4]) zobrazuje budík( counter_alarm). 
-Nastavování času se provádí pomocí tlačítek BTNU, BTNR a spínače SW[0] (blíže popsané v ___).
+Nastavování času se provádí pomocí tlačítek BTNU, BTNR a spínače SW[0] (blíže popsané v Ovládání).
 Signalizace je realizovaná pomocí RGB LED. Ovládá se pomocí SW[1] a BTND.
 
 
@@ -64,10 +59,37 @@ Komponenta ze cvičení, ošetřuje vstupy z tlačítek.
 ### Clk_en
 Komponenta ze cvičení, ___
 ### Counter_clock 
-
+p_clock_startstop  -  proces reaguje na stisknutí tlačítka BTNC, kterým mění hodnotu sig_clock_on určující jestli hodiny ubíhají nebo ne(=nastavuje se čas)
+p_time_unit_edit  - proces reaguje na stisk tlačítka btnr, počítá stisknutí (sig_time_unit) a posouvá nastavovaný řád od minut na hodiny
+p_clock_setting - proces zajišťuje jak ošetření nastavování řádu jednotlivých digit tak přičítání sekund k aktuánímu času při běhu hodin
+Vystupy "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu compare a pro převody na vyšší jednotky času)
+"minutes" (převod sig_cnt (seconds) na uběhlé minuty pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
+"hours" (převod sig_cnt (seconds) na uběhlé hodiny pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
 ### Counter_alarm
+p_time_unit_edit  - funguje stejně jako u counter_clock
+p_alarm_setting  - ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy
+<--!podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
+vychozí zase "seconds", "minutes" a "hours", sekundy pro porovnání, minuty a hodiny na zobrazeni 
+myšlenka: "uživatel si tlačítky asi BTNU, BTNR a BTNC zvolí čas k spuštění budíku, volí si hodiny a minuty, ty se převedou zpět na sekundy a vyvodí "seconds"  pro porovnání,
+BTNC asi pro potvrzení a spuštění, čítač zde spíše funguje pro synchronizaci s Clockem" -->
 ### Seconds_compare
+komponenta porovnává počet uběhlých sekund z counter_clock (hodin) s počtem sekund z counter_alarm (budíku)
 ### Display_driver
+Datových vstupů je 8, jsou 4 to hodnoty času pro jednotlivé digity hodin a stejný počet pro budík. 
+
+
+## Ovládání 
+
+| Vstup  | Funkce                                                                                                                         |
+|--------|--------------------------------------------------------------------------------------------------------------------------------|
+| BTNC   | Přepínání mezi režimem nastavování času a odpočítáváním času                                                                   |
+| BTNR   | Přepínání mezi nastavovanými řády času                                                                                         |
+| BTNU   | Nastavovaní hodnoty na daném řádu                                                                                              |
+| BTND   | Vypnutí blikání RGB LED                                                                                                        |
+| SW[0]  | Přepínání mezi nastavováním hodin (clock) a budíku(alarm)                                                                      |
+| SW[1]  | Nařízení budíku, vypnuté = RGB LED nebude blikat při shodě obou časů, sepnuté - RGB LED bude při shodě nastavených časů blikat |
+| SW[15] | Resetování celého systému - vynuluování hodin a budíku                                                                         |
+
 
 
 ## Simulace nových komponent
@@ -90,7 +112,7 @@ Counter_Clock
 - modul vytvořen, vystupem jsou opravdu uplynulé sekundy(CELKOVÉ sekundy pro compare!!!!!, NE zbytek sekund po přepočtu na minuty), minuty a hodiny
 - pro dosavadní testování je zvýšen sekundový čas, sig_en <= '1'; wait for 900 us; -->
   
-Obr. 3: Zobrazená simulace pro tb_counter_clock, zobrazující uplynulé sekundy, minuty a hodiny
+Obr. 2: Zobrazená simulace pro tb_counter_clock, zobrazující uplynulé sekundy, minuty a hodiny
 <img width="1649" height="812" alt="obrazek" src="https://github.com/user-attachments/assets/593b9d27-8c5c-4b3e-b080-1510a1dcb5cb" />
 
 <!--
@@ -129,15 +151,21 @@ Cv. 3.:
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
  -->
 
-## Ovládání 
 
-| Vstup  | Funkce                                                                                                                         |
-|--------|--------------------------------------------------------------------------------------------------------------------------------|
-| BTNC   | Přepínání mezi režimem nastavování času a odpočítáváním času                                                                   |
-| BTNR   | Přepínání mezi nastavovanými řády času                                                                                         |
-| BTNU   | Nastavovaní hodnoty na daném řádu                                                                                              |
-| BTND   | Vypnutí blikání RGB LED                                                                                                        |
-| SW[0]  | Přepínání mezi nastavováním hodin (clock) a budíku(alarm)                                                                      |
-| SW[1]  | Nařízení budíku, vypnuté = RGB LED nebude blikat při shodě obou časů, sepnuté - RGB LED bude při shodě nastavených časů blikat |
-| SW[15] | Resetování celého systému - vynuluování hodin a budíku                                                                         |
+
+## Využití prostředků
+
+
+## Git Flow
+
+
+## Ostatní výstupy
+Plakát : 
+Video : 
+
+## Zdroje a odkazy
+
+
+
+
 
