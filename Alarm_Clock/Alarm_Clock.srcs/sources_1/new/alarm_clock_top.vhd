@@ -13,7 +13,9 @@ entity alarm_clock_top is
             
             seg : out std_logic_vector (6 downto 0);
             an : out std_logic_vector (7 downto 0);
-            led16_r : out std_logic
+            led16_r : out std_logic;
+            led17_r : out std_logic;
+            dp : out std_logic
             );
 end alarm_clock_top;
 
@@ -53,7 +55,9 @@ architecture Behavioral of alarm_clock_top is
             clk_minutes_x0 : out std_logic_vector(3 downto 0);     
             clk_minutes_0x : out std_logic_vector(3 downto 0);      
             clk_hours_x0   : out std_logic_vector(3 downto 0);      
-            clk_hours_0x   : out std_logic_vector(3 downto 0)       
+            clk_hours_0x   : out std_logic_vector(3 downto 0);
+            
+            clk_dp_out : out std_logic_vector(7 downto 0)       
             );
     end component counter_clock;
     
@@ -74,7 +78,9 @@ architecture Behavioral of alarm_clock_top is
             alr_minutes_x0 : out std_logic_vector(3 downto 0);      
             alr_minutes_0x : out std_logic_vector(3 downto 0);      
             alr_hours_x0   : out std_logic_vector(3 downto 0);      
-            alr_hours_0x   : out std_logic_vector(3 downto 0)       
+            alr_hours_0x   : out std_logic_vector(3 downto 0);
+            
+            alr_dp_out : out std_logic_vector(7 downto 0)       
             );
     end component counter_alarm;
     
@@ -105,7 +111,10 @@ architecture Behavioral of alarm_clock_top is
            alr_hours_0x   : in std_logic_vector(3 downto 0);       
            
            seg : out STD_LOGIC_VECTOR (6 downto 0);
-           an : out STD_LOGIC_VECTOR (7 downto 0)
+           an : out STD_LOGIC_VECTOR (7 downto 0);
+           
+           dp_in : in std_logic_vector(7 downto 0);    --!!
+           dp : out std_logic                               --!!
            );
     end component clock_display;        
     
@@ -128,8 +137,20 @@ architecture Behavioral of alarm_clock_top is
     signal sig_alr_hx0 : std_logic_vector (3 downto 0);
     
     signal sig_buzz_off : std_logic;
+    
+    signal sig_clk_dp_out : std_logic_vector(7 downto 0);
+    signal sig_alr_dp_out : std_logic_vector(7 downto 0);
+    signal sig_dp_out     : std_logic_vector(7 downto 0);
+    
+    signal sig_LED_switch : std_logic;
 
 begin
+    sig_dp_out <= "11111111" when sw(1) = '1' else
+                         sig_clk_dp_out when sw(0) = '1' else
+                         sig_alr_dp_out;
+    
+    led16_r <= sig_LED_switch;
+    led17_r <= not sig_LED_switch;
     
     gen_Hz : clk_en
         generic map (G_max => 20)  --- pro desku 100_000_000, pro sim 20
@@ -189,7 +210,9 @@ begin
             clk_minutes_0x => sig_clk_m0x,
             clk_minutes_x0 => sig_clk_mx0,
             clk_hours_0x => sig_clk_h0x,
-            clk_hours_x0 => sig_clk_hx0
+            clk_hours_x0 => sig_clk_hx0,
+            
+            clk_dp_out => sig_clk_dp_out
         );
     counter_alarm_0 : counter_alarm
         port map (
@@ -205,9 +228,9 @@ begin
             alr_minutes_0x => sig_alr_m0x,
             alr_minutes_x0 => sig_alr_mx0,
             alr_hours_0x => sig_alr_h0x,
-            alr_hours_x0 => sig_alr_hx0
+            alr_hours_x0 => sig_alr_hx0,
             
-            ---alarm_on => ...
+            alr_dp_out => sig_alr_dp_out
         );
         
     compare : seconds_compare
@@ -221,7 +244,7 @@ begin
             s_clock => sig_s_clock,
             s_alarm => sig_s_alarm,
             
-            buzzer_interval => led16_r
+            buzzer_interval => sig_LED_switch
         );
     
     display : clock_display
@@ -240,7 +263,10 @@ begin
             alr_hours_x0 => sig_alr_hx0,
             
             seg => seg,
-            an => an
+            an => an,
+            
+            dp_in => sig_dp_out,
+            dp => dp
         );
 
 end Behavioral;

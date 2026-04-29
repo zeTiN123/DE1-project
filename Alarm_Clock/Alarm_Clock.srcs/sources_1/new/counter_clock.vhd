@@ -18,7 +18,9 @@ entity counter_clock is
         clk_minutes_x0 : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         clk_minutes_0x : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         clk_hours_x0   : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
-        clk_hours_0x   : out std_logic_vector(3 downto 0)       ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
+        clk_hours_0x   : out std_logic_vector(3 downto 0);       ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
+        
+        clk_dp_out : out std_logic_vector(7 downto 0)   --!!
         );
 end entity counter_clock;
 
@@ -133,6 +135,21 @@ begin
             end if;
         end if;
     end process p_clock_setting;
+    
+    p_clk_dp_out : process (sig_time_unit, sig_clock_on) is
+    begin
+        clk_dp_out <= "11111111";
+        
+        if sig_clock_on = '0' then
+            case sig_time_unit is
+                when 4 => clk_dp_out(4) <= '0'; 
+                when 5 => clk_dp_out(5) <= '0';
+                when 6 => clk_dp_out(6) <= '0';
+                when 7 => clk_dp_out(7) <= '0';
+                when others => null;
+            end case;
+        end if;
+    end process p_clk_dp_out;
     
     sig_total_clock_seconds <= ((sig_m_0x * 60) + (sig_m_x0 * 600) + (sig_h_0x * 3600) + (sig_h_x0 * 36000) + sig_seconds);
 

@@ -16,7 +16,10 @@ entity clock_display is
            alr_hours_0x   : in std_logic_vector(3 downto 0);       ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
            
            seg : out STD_LOGIC_VECTOR (6 downto 0);
-           an : out STD_LOGIC_VECTOR (7 downto 0)               ---an[7 až 4] clock a an[3 až 0] alarm
+           an : out STD_LOGIC_VECTOR (7 downto 0);               ---an[7 až 4] clock a an[3 až 0] alarm
+           
+           dp_in : in std_logic_vector(7 downto 0);         --!!
+           dp : out std_logic                               --!!
            );            
            
 end clock_display;
@@ -113,25 +116,34 @@ begin
         case sig_digit is
             when "000" =>        
                 an <= "11111110";       ---an[0]
+                dp <= dp_in(0);
             when "001" =>
                 an <= "11111101";       ---an[1]
+                dp <= dp_in(1);
             when "010" =>
                 an <= "11111011";       ---an[2]
+                dp <= dp_in(2);
             when "011" =>
                 an <= "11110111";       ---an[3]
+                dp <= dp_in(3);
             when "100" =>        
                 an <= "11101111";       ---an[4]
+                dp <= dp_in(4);
             when "101" =>
                 an <= "11011111";       ---an[5]
+                dp <= dp_in(5);
             when "110" =>
                 an <= "10111111";       ---an[6]
+                dp <= dp_in(6);
             when "111" =>
                 an <= "01111111";       ---an[7]
+                dp <= dp_in(7);
             
             -- TODO: Add another anode selection(s)
 
             when others =>
                 an <= "11111111";  -- All off
+                dp <= '1';
         end case;
     end process;
     
