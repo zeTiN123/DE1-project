@@ -20,7 +20,9 @@ entity counter_alarm is
         alr_minutes_x0 : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         alr_minutes_0x : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
         alr_hours_x0   : out std_logic_vector(3 downto 0);      ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
-        alr_hours_0x   : out std_logic_vector(3 downto 0)       ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
+        alr_hours_0x   : out std_logic_vector(3 downto 0);       ---2 na 4 = az 16 abychom meli 0,1,2,...,9 = na 10 cisel
+        
+        alr_dp_out : out std_logic_vector(7 downto 0)   --!!!
     );
 end entity counter_alarm;
 
@@ -110,6 +112,19 @@ begin
             end if;
         end if;
     end process p_alarm_setting;
+    
+    p_dp_out : process (sig_time_unit) is
+    begin
+        alr_dp_out <= "11111111";
+        
+        case sig_time_unit is
+            when 0 => alr_dp_out(0) <= '0'; 
+            when 1 => alr_dp_out(1) <= '0';
+            when 2 => alr_dp_out(2) <= '0';
+            when 3 => alr_dp_out(3) <= '0';
+            when others => null;
+        end case;
+    end process p_dp_out;
     
     sig_total_alarm_seconds <= ((sig_m_0x * 60) + (sig_m_x0 * 600) + (sig_h_0x * 3600) + (sig_h_x0 * 36000));
     
