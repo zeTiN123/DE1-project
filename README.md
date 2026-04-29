@@ -42,9 +42,10 @@ a nebo, což se jeví ve fázi simulaci a vytváření přijatelnější, světe
 Projekt má realizovat Budík (=Alarm Clock), kde lze
 1.	Nastavit a odpočítávat ubíhající čas realizovaný pomocí modulu counter_clock
 2.	Nastavit čas, při kterém se aktivuje signalizace realizované pomocí modulů counter_alarm a compare_seconds
-3.	Zobrazení obou časů – realizováno pomocí clock_display
-Čas je zobrazován ve 24 hodinovém formátu ve tvaru Hodiny:Minuty.
+3.	Zobrazení obou časů – realizováno pomocí clock_display. Čas je zobrazován ve 24 hodinovém formátu ve tvaru Hodiny:Minuty.
+
 7-segmentové displeje jsou využity následovně: 1. část, tedy an[3->0], zobrazuje čas hodin (counter_clock) a 2. část (an[7->4]) zobrazuje budík( counter_alarm). 
+
 Nastavování času se provádí pomocí tlačítek BTNU, BTNR a spínače SW[0] (blíže popsané v Ovládání).
 Signalizace je realizovaná pomocí RGB LED. Ovládá se pomocí SW[1] a BTND.
 
@@ -73,17 +74,18 @@ Komponenta ze cvičení, ___
     - funguje stejně jako u counter_clock
 #### p_alarm_setting
     - ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy
-<--!podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
+
+<--! podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
 vychozí zase "seconds", "minutes" a "hours", sekundy pro porovnání, minuty a hodiny na zobrazeni 
 myšlenka: "uživatel si tlačítky asi BTNU, BTNR a BTNC zvolí čas k spuštění budíku, volí si hodiny a minuty, ty se převedou zpět na sekundy a vyvodí "seconds"  pro porovnání,
 BTNC asi pro potvrzení a spuštění, čítač zde spíše funguje pro synchronizaci s Clockem" -->
+
 ### Seconds_compare
-komponenta porovnává počet uběhlých sekund z counter_clock (hodin) s počtem sekund z counter_alarm (budíku)
+    - komponenta porovnává počet uběhlých sekund z counter_clock (hodin) s počtem sekund z counter_alarm (budíku)
+    - při schodě těchto dvou hodnot se aktivuje blikání RGB LED
 ### Display_driver
 Datových vstupů je 8, jsou 4 to hodnoty času pro jednotlivé digity hodin a stejný počet pro budík. 
 Anody an[3->0], zobrazuje čas hodin, (an[7->4]) zobrazuje čas nastavený na budíku.
-
-
 
 ## Ovládání 
 
