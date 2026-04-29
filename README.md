@@ -66,14 +66,15 @@ Signalizace je realizovaná pomocí RGB LED. Ovládá se pomocí SW[1] a BTND.
 &nbsp;&nbsp;&nbsp;&nbsp;Proces reaguje na stisk tlačítka btnr, počítá stisknutí (sig_time_unit) a posouvá nastavovaný řád od minut na hodiny
 #### p_clock_setting
 &nbsp;&nbsp;&nbsp;&nbsp;Proces zajišťuje jak ošetření nastavování řádu jednotlivých digit tak přičítání sekund k aktuánímu času při běhu hodin.
-&nbsp;&nbsp;&nbsp;&nbsp;Výstupy "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu compare a pro převody na vyšší jednotky času) "minutes" (převod sig_cnt (seconds) na uběhlé minuty pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.) "hours" (převod sig_cnt (seconds) na uběhlé hodiny pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
+
+&nbsp;&nbsp;&nbsp;&nbsp;Výstupem jsou "seconds" (odpovídá sig_cnt, naše základní jednotka pro porovnávání v modulu compare a pro převody na vyšší jednotky času), "minutes" (převod sig_cnt (seconds) na uběhlé minuty pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.) a "hours" (převod sig_cnt (seconds) na uběhlé hodiny pro zobrazení na anodách, vypočet přes MODulo a dělení 60 atd.)
 ### Counter_alarm
 #### p_time_unit_edit
 &nbsp;&nbsp;&nbsp;&nbsp;Funguje stejně jako u counter_clock.
 #### p_alarm_setting
-&nbsp;&nbsp;&nbsp;&nbsp;Ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy
+&nbsp;&nbsp;&nbsp;&nbsp;Ošetřuje pouze nastavování času ale na rozdíl od stejného procesu v counter_clock nepřičítá sekundy.
 
-<--! podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
+<!-- podobný princip jako clock ale s důležitým nastavením hodin a minut pro spouštění budíku, při porovnání s aktualním časem Clocku
 vychozí zase "seconds", "minutes" a "hours", sekundy pro porovnání, minuty a hodiny na zobrazeni 
 myšlenka: "uživatel si tlačítky asi BTNU, BTNR a BTNC zvolí čas k spuštění budíku, volí si hodiny a minuty, ty se převedou zpět na sekundy a vyvodí "seconds"  pro porovnání,
 BTNC asi pro potvrzení a spuštění, čítač zde spíše funguje pro synchronizaci s Clockem" -->
