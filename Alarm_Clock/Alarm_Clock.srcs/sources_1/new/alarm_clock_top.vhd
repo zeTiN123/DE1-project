@@ -16,6 +16,10 @@ entity alarm_clock_top is
             led16_r : out std_logic;
 
             dp : out std_logic
+            
+            --neimplementovane prvky k audio vystupu:
+            --aud_pwm : out std_logic;
+            --aud_sd : out std_logic
             );
 end alarm_clock_top;
 
@@ -240,6 +244,10 @@ begin
             s_alarm => sig_s_alarm,
             
             buzzer_interval => led16_r
+            
+            --neimplementovane prvky k audio vystupu:
+            --buzzer_interval => aud_pwm,
+            --aud_sd <= '1'
         );
     
     display : clock_display
