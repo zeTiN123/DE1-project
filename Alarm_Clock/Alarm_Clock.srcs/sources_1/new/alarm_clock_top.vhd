@@ -14,7 +14,7 @@ entity alarm_clock_top is
             seg : out std_logic_vector (6 downto 0);
             an : out std_logic_vector (7 downto 0);
             led16_r : out std_logic;
-            led17_r : out std_logic;
+
             dp : out std_logic
             );
 end alarm_clock_top;
@@ -113,7 +113,7 @@ architecture Behavioral of alarm_clock_top is
            seg : out STD_LOGIC_VECTOR (6 downto 0);
            an : out STD_LOGIC_VECTOR (7 downto 0);
            
-           dp_in : in std_logic_vector(7 downto 0);    --!!
+           dp_in : in std_logic_vector(7 downto 0);         --!!
            dp : out std_logic                               --!!
            );
     end component clock_display;        
@@ -141,19 +141,14 @@ architecture Behavioral of alarm_clock_top is
     signal sig_clk_dp_out : std_logic_vector(7 downto 0);
     signal sig_alr_dp_out : std_logic_vector(7 downto 0);
     signal sig_dp_out     : std_logic_vector(7 downto 0);
-    
-    signal sig_LED_switch : std_logic;
 
 begin
     sig_dp_out <= "11111111" when sw(1) = '1' else
                          sig_clk_dp_out when sw(0) = '1' else
                          sig_alr_dp_out;
     
-    led16_r <= sig_LED_switch;
-    led17_r <= not sig_LED_switch;
-    
     gen_Hz : clk_en
-        generic map (G_max => 20)  --- pro desku 100_000_000, pro sim 20
+        generic map (G_max => 100000000)  --- pro desku 100_000_000, pro sim 20
         port map (
             clk => clk,
             rst => sw(15),
@@ -244,7 +239,7 @@ begin
             s_clock => sig_s_clock,
             s_alarm => sig_s_alarm,
             
-            buzzer_interval => sig_LED_switch
+            buzzer_interval => led16_r
         );
     
     display : clock_display

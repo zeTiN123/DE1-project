@@ -42,13 +42,13 @@ architecture Behavioral of counter_alarm is
 begin
 
    
-    p_alarm_activate : process (clk) is     ---zapnutí a vypnutí pomocí BTNC, !!!CO TO ASI UDĚLÁ S PODMÍNKOU BTNC VYPNUTÍ BUDÍKU V COMPARE??????
+    p_alarm_activate : process (clk) is     ---zapnutí a vypnutí pomocí BTNC
     begin
         if rising_edge(clk) then
             if rst = '1' then    
                 sig_alarm_on <= '0';
 
-            elsif (btnc_press = '1' and sw_0 = '0') then  
+            elsif (btnc_press = '1') then       
                 sig_alarm_on <= not sig_alarm_on;       ---překlopeni zap/vyp       
             end if;
         end if;

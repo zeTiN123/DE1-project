@@ -69,7 +69,7 @@ begin
     -- Clock enable generator for refresh timing
     ------------------------------------------------------------------------
     clock_0 : clk_en
-        generic map ( G_MAX => 2 )  -- Adjust for flicker-free multiplexing    !!!!!!
+        generic map ( G_MAX => 100000 )  -- Adjust for flicker-free multiplexing    !!!!!!
         port map (                  -- For simulation: 2
             clk => clk,             -- For implementation: 100_000
             rst => rst,
@@ -111,7 +111,7 @@ begin
     ------------------------------------------------------------------------
     -- Anode select process
     ------------------------------------------------------------------------
-    p_anode_select : process (sig_digit) is
+    p_anode_select : process (sig_digit, dp_in) is
     begin
         case sig_digit is
             when "000" =>        
