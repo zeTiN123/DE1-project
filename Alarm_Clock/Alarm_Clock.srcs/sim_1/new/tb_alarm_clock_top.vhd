@@ -16,7 +16,8 @@ architecture tb of tb_alarm_clock_top is
             sw      : in std_logic_vector (15 downto 0);
             seg     : out std_logic_vector (6 downto 0);
             an      : out std_logic_vector (7 downto 0);
-            led16_r : out std_logic
+            led16_r : out std_logic;
+            dp      : out std_logic 
         );
     end component;
 
@@ -30,6 +31,7 @@ architecture tb of tb_alarm_clock_top is
     signal seg     : std_logic_vector(6 downto 0);
     signal an      : std_logic_vector(7 downto 0);
     signal led16_r : std_logic;
+    signal dp      : std_logic; 
 
     constant clk_period : time := 10 ns; 
     signal sim_ended    : boolean := false;
@@ -45,16 +47,15 @@ begin
         sw      => sw,
         seg     => seg,
         an      => an,
-        led16_r => led16_r
+        led16_r => led16_r,
+        dp      => dp 
     );
 
     clk_process : process
     begin
         while not sim_ended loop
-            clk <= '0';
-            wait for clk_period / 2;
-            clk <= '1';
-            wait for clk_period / 2;
+            clk <= '0'; wait for clk_period / 2;
+            clk <= '1'; wait for clk_period / 2;
         end loop;
         wait;
     end process;
@@ -77,44 +78,31 @@ begin
 
         sw(0) <= '1'; 
         wait for 1 us;
-
-        for i in 1 to 2 loop push_button(btnu); end loop;
+        for i in 1 to 2 loop push_button(btnu); end loop; 
         push_button(btnr); 
-
         push_button(btnr); 
-
-        for i in 1 to 4 loop push_button(btnu); end loop;
+        for i in 1 to 4 loop push_button(btnu); end loop; 
         push_button(btnr); 
-
-        for i in 1 to 2 loop push_button(btnu); end loop;
-        push_button(btnr); 
+        for i in 1 to 2 loop push_button(btnu); end loop; 
 
         sw(0) <= '0'; 
         wait for 1 us;
-
-        for i in 1 to 2 loop push_button(btnu); end loop;
+        for i in 1 to 1 loop push_button(btnu); end loop; 
         push_button(btnr); 
-
-        push_button(btnu); 
+        for i in 1 to 5 loop push_button(btnu); end loop; 
         push_button(btnr); 
-
-        for i in 1 to 5 loop push_button(btnu); end loop;
-        push_button(btnr); 
-
-        for i in 1 to 8 loop push_button(btnu); end loop;
-        push_button(btnr);
+        for i in 1 to 8 loop push_button(btnu); end loop; 
 
         sw(1) <= '1'; 
         wait for 1 us;
         
         sw(0) <= '1'; 
         wait for 1 us;
-        
-        push_button(btnc);
+        push_button(btnc); 
 
         wait for 1 ms;
 
-        push_button(btnc);
+        push_button(btnd);
         
         wait for 10 us;
 
